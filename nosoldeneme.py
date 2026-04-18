@@ -1,4 +1,4 @@
-import cv2
+import openCv2 as cv2
 vid=cv2.VideoCapture(0)
 face_cascade=cv2.CascadeClassifier(r"C:\Users\prems\Desktop\opencv_blog_content-master\classifier\cascade.xml")### CASCADE DOSYASININ YOLU)
 font1 = cv2.FONT_HERSHEY_SIMPLEX # YAKALANAN GÖRSELİN ADININ FONTU

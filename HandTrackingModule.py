@@ -11,8 +11,13 @@ class handDetector():
         self.trackCon = trackCon
 
         self.mpHands = mp.solutions.hands
-        self.hands = self.mpHands.Hands(self.mode, self.maxHands,
-                                        self.detectionCon, self.trackCon)
+        self.results = None
+        self.hands = self.mpHands.Hands(
+            static_image_mode=self.mode,
+            max_num_hands=self.maxHands,
+            min_detection_confidence=self.detectionCon,
+            min_tracking_confidence=self.trackCon
+        )
         self.mpDraw = mp.solutions.drawing_utils
 
     def findHands(self, img, draw=True):
@@ -27,25 +32,23 @@ class handDetector():
                                                self.mpHands.HAND_CONNECTIONS)
         return img
 
-    def findPosition(self, img, handNo=0, draw=True, color =  (255, 0, 255), z_axis=False):
+    def findPosition(self, img, handNo=0, draw=True, color=(255, 0, 255), z_axis=False):
 
         lmList = []
-        if self.results.multi_hand_landmarks:
+        if self.results and self.results.multi_hand_landmarks:
             myHand = self.results.multi_hand_landmarks[handNo]
             for id, lm in enumerate(myHand.landmark):
-             #   print(id, lm)
+                # print(id, lm)
                 h, w, c = img.shape
-                if z_axis == False:
-                   cx, cy = int(lm.x * w), int(lm.y * h)
-                    # print(id, cx, cy)
-                   lmList.append([id, cx, cy])
-                elif z_axis:
-                    cx, cy, cz = int(lm.x * w), int(lm.y * h), round(lm.z,3)
-                    # print(id, cx, cy, cz)
+                if not z_axis:
+                    cx, cy = int(lm.x * w), int(lm.y * h)
+                    lmList.append([id, cx, cy])
+                else:
+                    cx, cy, cz = int(lm.x * w), int(lm.y * h), round(lm.z, 3)
                     lmList.append([id, cx, cy, cz])
 
                 if draw:
-                    cv2.circle(img, (cx, cy),5,color, cv2.FILLED)
+                    cv2.circle(img, (cx, cy), 5, color, cv2.FILLED)
 
         return lmList
 
@@ -53,7 +56,7 @@ class handDetector():
 def main():
     pTime = 0
     cTime = 0
-    cap = cv2.VideoCapture(1)
+    cap = cv2.VideoCapture(0)
     detector = handDetector(maxHands=1)
     while True:
         success, img = cap.read()

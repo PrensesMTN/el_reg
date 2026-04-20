@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/Users/prenses/Documents/hand /env/bin/python3.11" "$0" "$@"
-' '''
+#!/Users/prenses/Documents/el_reg/env/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

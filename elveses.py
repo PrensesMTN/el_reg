@@ -14,7 +14,7 @@ pygame.init()
 
 # Ses dosyalarını bir liste olarak tanımla
 # NOT: Bu dosyaların klasöründe olduğundan emin ol!
-ses_listesi = ["ses.mp3", "Interstellar_Theme.mp3"]
+ses_listesi = ["ses.mp3", "Interstellar_Theme.mp3","PENTHOS.mp3"]
 su_anki_ses_id = 0
 
 def ses_yukle(index):

@@ -17,7 +17,7 @@ mp_draw = mp.solutions.drawing_utils
 BAS_PARMAK_TIP = 4
 son_aci = -1
 
-cap = cv2.VideoCapture(STREAM_URL)
+cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_BUFFERSIZE, 1) 
 
 print("Yapay Zeka ve Takip Basladi...")

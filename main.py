@@ -1,9 +1,9 @@
 import cv2
 import numpy as np
-import mediapipe.python.solutions.hands as mp_hands
-import mediapipe.python.solutions.drawing_utils as mp_drawing
+import mediapipe as mp
+from mediapipe.python.solutions import hands as mp_hands
+from mediapipe.python.solutions import drawing_utils as mp_drawing
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
-
 app = FastAPI()
 
 # MediaPipe el tespiti modelini başlat
